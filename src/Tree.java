@@ -126,7 +126,8 @@ public class Tree {
 			return this;
 		}
 		
-		// O(h) donde h es la altura, en el peor de los casos debe recorrer la rama mas baja
+		//Los árboles AVL están siempre equilibrados de tal modo que para todos los nodos, la altura de la rama izquierda no difiere en más de una unidad de la altura de la rama derecha o viceversa. 
+		//Gracias a esta forma de equilibrio (o balanceo), la complejidad de una búsqueda en uno de estos árboles se mantiene siempre en orden de complejidad O(log n)
 		public Genero buscarGenero(String valor) {
 			Genero g=new Genero();
 				if (this.genero.getNombre().equals(valor)) {
@@ -144,20 +145,6 @@ public class Tree {
 					}
 				return g;
 		}
-		
-//		public ArrayList<Genero> getGeneros() {
-//			return new ArrayList<>(generos);
-//		}
-	 
-//
-//	    public boolean contieneGenero(String genero) {
-//	    	for (Genero g:generos) {
-//	    		if (g.getNombre().equals(genero)){
-//	    			return true;
-//	    		}
-//	    	}
-//	    	return false;
-//	    }
 		
 		public boolean isEmpty() {
 			return this.getSize()==0;

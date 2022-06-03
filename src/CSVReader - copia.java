@@ -37,12 +37,11 @@ public class CSVReader {
                 			libro.addGeneros(g);
                 			tree.addGenero(g);
                 		}
-                		
                 		libros.add(libro);
                 }  
                 
             }//tree.printInOrder();
-         
+          
           	biblioteca.agregarLibros(libros);	
         } catch (IOException e) {
             e.printStackTrace();

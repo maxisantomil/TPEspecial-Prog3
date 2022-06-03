@@ -17,10 +17,13 @@ public class Main {
         	 System.out.println("Ingrese un genero");
         	 genero=entrada.readLine();
         	
-        	 biblioteca.buscarPorGenero(genero);
         	 System.out.println(timer.stop());
+        	 if (biblioteca.buscarPorGenero(genero).getLibros().isEmpty()) {
+        		 System.out.println("el genero no existe");
+        	 }else {
         	 CSVWritter writter=new CSVWritter(biblioteca);
         	 writter.salida(genero);
+        	 }
         }catch(Exception e) {
         	 System.out.println(e);
         }
