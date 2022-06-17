@@ -30,7 +30,7 @@ public class CSVWritter {
 			String contenidoLinea2 = "Titulo, Autor, Paginas, Generos";
 			bw.write(contenidoLinea2);
 			bw.newLine();
-			for(Libro l: g.getLibros()) {
+			for(Libro l: g.getLibros()) { // se recorre la coleccion de libros de ese genero que se esta buscando
 				String contenidoLinea3 = l.getTitulo()+", "+ l.getAutor()+", "+l.getCant_paginas()+ ", " +l.getGeneros() ;
 				bw.write(contenidoLinea3);
 				bw.newLine();

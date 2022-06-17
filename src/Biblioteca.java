@@ -5,33 +5,36 @@ import java.util.LinkedList;
 public class Biblioteca {
     
     private Tree arbol;
-
+    private LinkedList<Libro>libros;
+    
     public Biblioteca() {
         this.arbol = new Tree();
-
+        this.libros = new LinkedList<Libro>();
     }
 
-    public Biblioteca(Tree tree) {
+    public Biblioteca(Tree tree, LinkedList<Libro>libros) {
         this.arbol = tree;
+        this.libros = libros;
     }
+    
 
     public Tree getArbol() {
 		return arbol;
 	}
 
-    public void agregarLibros(LinkedList<Libro>libros) {
-    	ArrayList<Genero> generos=arbol.getGeneros();
-    	System.out.println(generos.size());
+    public void agregarLibros(Genero genero) {
     	for (Libro l:libros) {
-    		for (Genero g:generos) {
-    			if (l.tieneGenero(g.getNombre()) ) {
-    				g.addLibro(l);
-    			}
+    			if (l.tieneGenero(genero.getNombre()) ) {
+    				genero.addLibro(l);
     		}
     	}
     }
+    
     public Genero buscarPorGenero(String genero) {
-    	return this.arbol.buscarGenero(genero);
+    	Genero genero2= this.arbol.buscarGenero(genero);
+    	agregarLibros(genero2);
+    	
+    	return genero2;
     }
     
 

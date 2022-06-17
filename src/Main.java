@@ -11,7 +11,6 @@ public class Main {
         timer.start();
         biblioteca=reader.readContent();
         String genero;
-        biblioteca.getArbol().printPreOrder();
         try {
         	 BufferedReader entrada= new BufferedReader(new InputStreamReader(System.in));
         	 System.out.println("Ingrese un genero");

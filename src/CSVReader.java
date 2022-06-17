@@ -18,7 +18,7 @@ public class CSVReader {
     public Biblioteca readContent(){
     	Tree tree=new Tree();
     	LinkedList<Libro>libros= new LinkedList<>();
-    	Biblioteca biblioteca= new Biblioteca(tree);
+    	Biblioteca biblioteca= new Biblioteca(tree,libros);
         String line = "";
         String cvsSplitBy = ";";
         int idLibro=0;
@@ -43,7 +43,7 @@ public class CSVReader {
                 
             }//tree.printInOrder();
          
-          	biblioteca.agregarLibros(libros);	
+          	//biblioteca.agregarLibros(libros);	
         } catch (IOException e) {
             e.printStackTrace();
         }
