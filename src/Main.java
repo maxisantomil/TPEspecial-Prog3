@@ -12,6 +12,7 @@ public class Main {
         biblioteca=reader.readContent();
         String genero;
         try {
+        	do {
         	 BufferedReader entrada= new BufferedReader(new InputStreamReader(System.in));
         	 System.out.println("Ingrese un genero");
         	 genero=entrada.readLine();
@@ -23,6 +24,7 @@ public class Main {
         	 CSVWritter writter=new CSVWritter(biblioteca);
         	 writter.salida(genero);
         	 }
+        	}while (genero!=null);
         }catch(Exception e) {
         	 System.out.println(e);
         }
