@@ -11,7 +11,7 @@ public interface Grafo<T> {
 		public void borrarVertice(String genero);
 
 		// Agrega un arco con una etiqueta, que conecta el verticeId1 con el verticeId2
-		public void agregarArco(String genero1, String genero2, T etiqueta);
+		public void agregarArco(String genero1, String genero2);
 
 		// Borra el arco que conecta el verticeId1 con el verticeId2
 		public void borrarArco(String genero1, String genero2);
@@ -23,7 +23,7 @@ public interface Grafo<T> {
 		public boolean existeArco(String genero1, String genero2);
 		
 		// Obtener el arco que conecta el verticeId1 con el verticeId2
-		public Arco<T> obtenerArco(String genero1, String genero2);
+		public Arco obtenerArco(String genero1, String genero2);
 
 		// Devuelve la cantidad total de vertices en el grafo
 		public int cantidadVertices();
@@ -38,10 +38,10 @@ public interface Grafo<T> {
 		public Iterator<String> obtenerAdyacentes(String genero);
 
 		// Obtiene un iterador que me permite recorrer todos los arcos del grafo
-		public Iterator<Arco<T>> obtenerArcos();
+		public Iterator<Arco> obtenerArcos();
 			
 		// Obtiene un iterador que me permite recorrer todos los arcos que parten desde verticeId
-		public Iterator<Arco<T>> obtenerArcos(String genero);
+		public Iterator<Arco> obtenerArcos(String genero);
 		
 		
 }

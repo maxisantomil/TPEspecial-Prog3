@@ -4,48 +4,50 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Vertice<T> {
-	private String padre;
+public class Vertice {
+	private LinkedList<String> padres=new LinkedList<>();
 	private String verticeId;
-	LinkedList<Arco<T>>arcos;
+	LinkedList<Arco>arcos;
 	
 	public String getVerticeId() {
 		return verticeId;
 	}
 
-	public String getPadre() {
-		return padre;
+	public LinkedList<String> getPadres() {
+		return new LinkedList<>(padres);
 	}
 	public void setPadre(String v) {
-		this.padre= v;
+		padres.add(v);
 	}
 	public void setVerticeId(String verticeId) {
 		this.verticeId = verticeId;
 	}
 
-	public LinkedList<Arco<T>> getArcos() {
+	public LinkedList<Arco> getArcos() {
 		return arcos;
 	}
 
-	public void setArcos(LinkedList<Arco<T>> arcos) {
+	public void setArcos(LinkedList<Arco> arcos) {
 		this.arcos = arcos;
 	}
 
 	public Vertice(String verticeId) {
 		this.verticeId=verticeId;
-		arcos = new LinkedList<Arco<T>>();
+		arcos = new LinkedList<Arco>();
 	}
 
-	public void agregarArco(Arco<T> aux) {
+	public void agregarArco(Arco aux) {
 		this.arcos.add(aux);
 	}
 	
 	
 	public boolean existeArco(String idAdyacente) {
 		boolean result= false;
-		for (Arco<T> a: arcos ) {
-			if (a.getVerticeDestino()==idAdyacente){
-				return result=true;
+		for (Arco a: arcos ) {
+			if (a.getVerticeDestino().equals(idAdyacente)){
+				result=true;
+				System.out.println("resuktadooo "+ result);
+				return result;
 			}
 		}
 		return result;
@@ -53,8 +55,8 @@ public class Vertice<T> {
 	
 	public void borrarArco(String idAdyacente) {
 		if (existeArco(idAdyacente)) {
-			Arco<T> arcoAux =null;
-			for (Arco<T> a: arcos ) {
+			Arco arcoAux =null;
+			for (Arco a: arcos ) {
 				if (a.getVerticeDestino()==idAdyacente){
 					arcoAux= a;
 				}
@@ -63,11 +65,11 @@ public class Vertice<T> {
 		}
 	}
 
-	public Arco<T> devolverArco(String idAdyacente) {
+	public Arco devolverArco(String idAdyacente) {
 		//return arcos.get(verticeId2);
-		Arco<T> arcoAux =null;
-		for (Arco<T> a: arcos ) {
-			if (a.getVerticeDestino()==idAdyacente){
+		Arco arcoAux =null;
+		for (Arco a: arcos ) {
+			if (a.getVerticeDestino().equals(idAdyacente)){
 				arcoAux= a;
 			}
 		}
@@ -79,7 +81,7 @@ public class Vertice<T> {
 	}
 	public Iterator<String> obtenerAdyacentes(){
 		ArrayList<String> aux = new ArrayList<String>();
-		for (Arco<T> a: arcos ) {
+		for (Arco a: arcos ) {
 			aux.add(a.getVerticeDestino());
 		}
 		return aux.iterator();

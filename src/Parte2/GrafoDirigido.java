@@ -3,16 +3,20 @@ package Parte2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 
-public class GrafoDirigido<T> implements Grafo<T>{
+public class GrafoDirigido implements Grafo{
 	HashMap <String, Vertice> mapVertices = new HashMap <String, Vertice> ();
 	
 		@Override
 		public void agregarVertice(String verticeId, String padre) {
 			Vertice actual=new Vertice(verticeId);
-			actual.setPadre(padre);
 			if (!mapVertices.containsKey(verticeId)){
+				actual.setPadre(padre);
 				mapVertices.put(verticeId,actual);
+			}
+			else {
+				mapVertices.get(verticeId).setPadre(padre);
 			}
 		}
 
@@ -26,7 +30,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 
 		private void borrardeAdyacente(String verticeId) {
-			for (Vertice<T> v: mapVertices.values()) {
+			for (Vertice v: mapVertices.values()) {
 				if (v.getVerticeId()!=verticeId) {
 					v.borrarArco(verticeId);
 				}
@@ -35,18 +39,25 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 
 		@Override
-		public void agregarArco(String verticeId1, String verticeId2, T etiqueta) {
-			String padre= mapVertices.get(verticeId1).getPadre();
-			int suma = 1;
+		public void agregarArco(String verticeId1, String verticeId2) {
+			LinkedList<String> padres= mapVertices.get(verticeId1).getPadres();
+				if (padres.contains(verticeId2)) {
+					String padre=verticeId2;
 				if (mapVertices.containsKey(padre)&& mapVertices.containsKey(verticeId1)){
-					if (!mapVertices.get(padre).existeArco(verticeId1)) {
+					if (!mapVertices.get(verticeId2).existeArco(verticeId1)) {
 						if(padre == verticeId2) {
-							Arco<T> aux = new Arco(padre,verticeId1,suma);
+							System.out.println(padre + ": "+ verticeId1);
+							Arco aux = new Arco(padre,verticeId1);
+							aux.setEtiqueta(1);
 							mapVertices.get(padre).agregarArco(aux);
 						}
-					}else {
-						obtenerArco(padre, verticeId1).setEtiqueta(suma+1);
+					}else if (mapVertices.get(padre).existeArco(verticeId1)) {
+						Arco arco = obtenerArco(padre, verticeId1);
+						System.out.println(arco.getEtiqueta());
+						
+						//obtenerArco(padre, verticeId1).setEtiqueta(suma +1);
 					}
+				}
 			}
 		}
 
@@ -74,7 +85,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 
 		@Override
-		public Arco<T> obtenerArco(String verticeId1, String verticeId2) {
+		public Arco obtenerArco(String verticeId1, String verticeId2) {
 			if (this.existeArco(verticeId1,verticeId2)) {
 				return (this.mapVertices.get(verticeId1).devolverArco(verticeId2));
 			}
@@ -114,8 +125,8 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 
 		@Override
-		public Iterator<Arco<T>> obtenerArcos() {
-			ArrayList<Arco<T>> aux = new ArrayList<Arco<T>>();
+		public Iterator<Arco> obtenerArcos() {
+			ArrayList<Arco> aux = new ArrayList<Arco>();
 			for (Vertice v: mapVertices.values()) {
 				aux.addAll(v.getArcos());
 			}
@@ -123,7 +134,7 @@ public class GrafoDirigido<T> implements Grafo<T>{
 		}
 
 		@Override
-		public Iterator<Arco<T>> obtenerArcos(String verticeId) {
+		public Iterator<Arco> obtenerArcos(String verticeId) {
 			return mapVertices.get(verticeId).getArcos().iterator();
 		}
 

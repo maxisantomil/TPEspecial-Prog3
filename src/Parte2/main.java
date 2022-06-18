@@ -10,7 +10,7 @@ import java.util.*;
 public class main {
 
 	public static void main(String[] args) {
-		GrafoDirigido<String> grafoD = new GrafoDirigido<String>();
+		GrafoDirigido grafoD = new GrafoDirigido();
 		
         String csvFile = "src/datasets/generos/dataset1.csv";
         CSVReader reader=new CSVReader(csvFile);
@@ -26,6 +26,7 @@ public class main {
         		else {
         			String padre2 = g.get(i-1);
         			grafoD.agregarVertice(g.get(i),padre2);
+        			grafoD.agregarArco(g.get(i), padre2);
         		}
         			
         		
@@ -35,12 +36,18 @@ public class main {
         Iterator<String> ItGeneros=grafoD.obtenerVertices();
         while (ItGeneros.hasNext()) {
         	String v= ItGeneros.next();
-        	System.out.println("padre de"+ grafoD.obtenerVertice(v)+": "+grafoD.obtenerVertice(v).getPadre());
+        	LinkedList<String> padres= grafoD.obtenerVertice(v).getPadres();
+        	System.out.println(padres.size());
+        	 Iterator<String> ItPadres=padres.iterator();
+        	 while (ItPadres.hasNext()) {
+        		 System.out.println("padre de"+ grafoD.obtenerVertice(v)+": "+ ItPadres.next());
+        	 }
         }
-//        grafoD.obtenerArcos("viajes");
-//        Iterator<Arco<String>> ItArcos=grafoD.obtenerArcos("viajes");
-//        while (ItArcos.hasNext()) {
-//    		System.out.println(ItArcos.next());
-//        }
+        grafoD.obtenerArcos("viajes");
+        Iterator<Arco> ItArcos=grafoD.obtenerArcos("viajes");
+        System.out.println(grafoD.existeArco("viajes", "juegos"));
+        while (ItArcos.hasNext()) {
+    		System.out.println(ItArcos.next());
+        }
 	}
 }
