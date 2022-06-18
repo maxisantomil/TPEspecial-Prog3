@@ -45,7 +45,7 @@ public class GrafoDirigido implements Grafo{
 					String padre=verticeId2;
 				if (mapVertices.containsKey(padre)&& mapVertices.containsKey(verticeId1)){
 					if (!mapVertices.get(verticeId2).existeArco(verticeId1)) {
-						if(padre == verticeId2) {
+						if(padre.equals(verticeId2)) {
 							System.out.println(padre + ": "+ verticeId1);
 							Arco aux = new Arco(padre,verticeId1);
 							aux.setEtiqueta(1);
@@ -54,8 +54,8 @@ public class GrafoDirigido implements Grafo{
 					}else if (mapVertices.get(padre).existeArco(verticeId1)) {
 						Arco arco = obtenerArco(padre, verticeId1);
 						System.out.println(arco.getEtiqueta());
-						
-						//obtenerArco(padre, verticeId1).setEtiqueta(suma +1);
+						int suma=arco.getEtiqueta();
+						obtenerArco(padre, verticeId1).setEtiqueta(suma +1);
 					}
 				}
 			}

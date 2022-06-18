@@ -45,7 +45,7 @@ public class main {
         }
         grafoD.obtenerArcos("viajes");
         Iterator<Arco> ItArcos=grafoD.obtenerArcos("viajes");
-        System.out.println(grafoD.existeArco("viajes", "juegos"));
+        System.out.println(grafoD.existeArco("servicios", "periodismo"));
         while (ItArcos.hasNext()) {
     		System.out.println(ItArcos.next());
         }
