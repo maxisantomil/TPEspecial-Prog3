@@ -1,6 +1,7 @@
 package Parte2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -140,5 +141,28 @@ public class GrafoDirigido implements Grafo{
 
 		public Vertice obtenerVertice(String id) {
 			return mapVertices.get(id);
+		}
+		
+		public ArrayList<String> generosMasBuscados(String verticeOrigen){
+			ArrayList<String> generosBuscados= new ArrayList<String>();
+			String auxGenero;
+			LinkedList<Arco> arcos= mapVertices.get(verticeOrigen).getArcos();
+//			while (arcos.hasNext()) {
+//				Arco arco1=arcos.next();
+//				Arco arco2=arcos.next();
+//			}
+			Collections.sort(arcos,new ComparadorEtiqueta().reversed());
+			generosBuscados.addAll(obtenerGenerosMasBuscados(arcos));
+			return generosBuscados;
+		}
+
+		private ArrayList<String> obtenerGenerosMasBuscados(LinkedList<Arco> arcos) {
+			Iterator<Arco> arcosBuscados= arcos.iterator();
+			ArrayList<String> destinos= new ArrayList<String>();
+			while (arcosBuscados.hasNext()) {
+				String destArco= arcosBuscados.next().getVerticeDestino();
+				destinos.add(destArco);
+			}
+			return destinos;
 		}
 }
