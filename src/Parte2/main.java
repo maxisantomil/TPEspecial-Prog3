@@ -43,20 +43,26 @@ public class main {
         		 System.out.println("padre de"+ grafoD.obtenerVertice(v)+": "+ ItPadres.next());
         	 }
         }
-        Iterator<Arco> ItArcos=grafoD.obtenerArcos("ensayo");
+        Iterator<Arco> ItArcos=grafoD.obtenerArcos("viajes");
         //System.out.println(grafoD.existeArco("servicios", "periodismo"));
         while (ItArcos.hasNext()) {
     		System.out.println(ItArcos.next());
         }
         
         
-        ArrayList<String>generosMasBuscados=grafoD.generosMasBuscados("ensayo");
+        ArrayList<String>generosMasBuscados=grafoD.generosMasBuscados("viajes");
         System.out.println("Generos mas buscados: ");
         for (String g:generosMasBuscados) {
         	System.out.print(" "+g);
         }
         
         DFS dfs= new DFS(grafoD);
-        dfs.dfsCiclo("informatica");
+        Iterator<String> recorreCiclo=dfs.dfsCiclo("viajes").iterator();
+        
+        while (recorreCiclo.hasNext()) {
+        	System.out.print("ARRANCA CICLO: "+ recorreCiclo.next());
+        }
+        
+      
 	}
 }
