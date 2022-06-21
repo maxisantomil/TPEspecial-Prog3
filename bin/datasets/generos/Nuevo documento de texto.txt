@@ -1,0 +1,44 @@
+   public ArrayList<String> dfsCiclo(String verticeEntrada){
+    	boolean existeCiclo=false;
+    	ArrayList<String>verticesCiclo= new ArrayList<String>();
+    	ArrayList<String>verticesPadres= new ArrayList<String>();
+        Iterator<String> it=grafo.obtenerVertices();
+        ArrayList<String> retorna= new ArrayList<String>();
+        while(it.hasNext()){
+            String vertice=it.next();
+            this.colores.put(vertice, "blanco");
+            //System.out.println("vertice " + vertice + "color " + colores.get(vertice));
+           // System.out.println(colores.get(vertice));
+        }
+        tiempo=0;
+//        Iterator<String> vertices=grafo.obtenerVertices();
+//        while(vertices.hasNext()){
+            //String vertice=vertices.next();
+            if(colores.get(verticeEntrada).equals("blanco")){
+              Dfs_VisitCiclo(verticeEntrada,verticesPadres,verticesCiclo,existeCiclo);
+            }
+            return verticesCiclo;
+    }
+
+  private void Dfs_VisitCiclo(String vertice,ArrayList<String>verticesPadres,ArrayList<String>verticesVisitados,boolean existeCiclo) {
+    	  if (existeCiclo) {
+         	 verticesVisitados.addAll(verticesPadres);
+    	  }
+    	  else {
+		        this.colores.put(vertice,"amarillo");
+		    	String padreActual=vertice;
+		        Iterator<String> it=grafo.obtenerAdyacentes(vertice);
+		        while(it.hasNext()){
+		            String v=it.next();
+		            if(colores.get(v)=="blanco"){
+		            	verticesPadres.add(padreActual);
+		                Dfs_VisitCiclo(v,verticesPadres,verticesVisitados,false);
+		               
+		            }
+		            else if(colores.get(v).equals("amarillo")){
+		            		verticesPadres.add(padreActual);
+		            		Dfs_VisitCiclo(v,verticesPadres,verticesVisitados,true);
+		            	}
+		        }
+		    }
+    }

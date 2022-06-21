@@ -53,16 +53,15 @@ public class main {
         ArrayList<String>generosMasBuscados=grafoD.generosMasBuscados("viajes");
         System.out.println("Generos mas buscados: ");
         for (String g:generosMasBuscados) {
-        	System.out.print(" "+g);
+        	System.out.println(" "+g);
         }
         
         DFS dfs= new DFS(grafoD);
-        Iterator<String> recorreCiclo=dfs.dfsCiclo("viajes").iterator();
-        
+        Iterator<String> recorreCiclo=dfs.dfsCiclo("psicología").iterator();
+        System.out.print("Generos afines a :" );
         while (recorreCiclo.hasNext()) {
-        	System.out.print("ARRANCA CICLO: "+ recorreCiclo.next());
+        	System.out.print(" "+recorreCiclo.next());
+        	}
+        	System.out.println("------------");
         }
-        
-      
-	}
 }
