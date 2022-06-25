@@ -57,11 +57,17 @@ public class main {
         }
         
         DFS dfs= new DFS(grafoD);
-        Iterator<String> recorreCiclo=dfs.dfsCiclo("psicología").iterator();
-        System.out.print("Generos afines a :" );
-        while (recorreCiclo.hasNext()) {
-        	System.out.print(" "+recorreCiclo.next());
-        	}
-        	System.out.println("------------");
-        }
+        dfs.buscarCiclo("viajes");
+        
+        //dfs.buscarSuma("viajes");
+        
+        System.out.println("**************************************************** ");
+        ArrayList<String>generoMayor=dfs.generosMayorValor(grafoD, "viajes");
+    	for(int i=0; i<generoMayor.size();i++){
+    		System.out.println(generoMayor.get(i));
+    	}
+    	System.out.println("**********************************fin****************");
+	}
+	
+	
 }

@@ -15,6 +15,10 @@ public class Arco {
 		this.verticeDestino = verticeDestino;
 	}
 	
+	public Arco() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getVerticeOrigen() {
 		return verticeOrigen;
 	}

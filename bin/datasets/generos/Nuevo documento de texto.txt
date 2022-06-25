@@ -42,3 +42,39 @@
 		        }
 		    }
     }
+
+
+---------------------------------------------
+
+  private void Dfs_VisitCiclo(String vertice,ArrayList<String>verticesPadres,ArrayList<String>verticesVisitados,boolean existeCiclo) {
+     
+    	if (existeCiclo) {
+         	 verticesVisitados.addAll(verticesPadres); 	 
+    	  }		
+    	 else {
+    	 		this.colores.put(vertice,"amarillo");
+		        tiempo=tiempo+1;
+		        int d=tiempo;
+		        this.visitados.put(vertice, d);
+		    	String padreActual=vertice;
+		        Iterator<String> it=grafo.obtenerAdyacentes(vertice);
+		        while(it.hasNext()&& existeCiclo==false){
+		            String v=it.next();
+		            if(colores.get(v)=="blanco"){
+		            	verticesPadres.add(padreActual);
+		                Dfs_VisitCiclo(v,verticesPadres,verticesVisitados,existeCiclo);
+		                verticesPadres.remove(padreActual);
+		            }
+		            if(colores.get(v).equals("amarillo")){
+		            	existeCiclo=true;
+		            	verticesPadres.add(padreActual);
+		            	 Dfs_VisitCiclo(v,verticesPadres,verticesVisitados,existeCiclo);
+		            }
+		        }
+		      
+		        this.colores.put(vertice,"negro");
+		        tiempo=tiempo+1;
+		        finales.put(vertice, tiempo);
+		        
+    	 }
+		       
