@@ -55,18 +55,21 @@ public class Servicio3 {
 	        solucionActual.add(verticeOrigen);
 	        encontrarSolucion(verticeOrigen);	        
         }
-        else System.out.println("el genero no existe");
-      }
-
-      private void encontrarSolucion(String vertex){ 
-        //Condicion Base: si el vertex es el vertice de inicio y el vertex es amarillo
-        if(vertex.equals(this.verticeOrigen) && this.colores.get(vertex).equals("amarillo")){
-          tieneCiclo = true;
-          System.out.println(" ");
-          mostrarGrafo();
-          //retorna para descubrir mas ciclos
-          return;
+        else {
+        	System.out.println("el genero no existe");
         }
+    }
+
+	private void encontrarSolucion(String vertex){ 
+	    //Condicion Base: si el vertex es el vertice de inicio y el vertex es amarillo
+	    if(vertex.equals(this.verticeOrigen) && this.colores.get(vertex).equals("amarillo")){
+	      tieneCiclo = true;
+	      System.out.println(" ");
+	      mostrarGrafo();
+	      //retorna para descubrir mas ciclos
+	      return;
+	    } 
+        	
         Iterator <String> adyacentes=grafo.obtenerAdyacentes(vertex);
         while(adyacentes.hasNext()){
             String vertice=adyacentes.next();
@@ -81,28 +84,28 @@ public class Servicio3 {
         this.colores.put(vertex, "negro");
     }
 
-       public void mostrarGrafo(){
-    	    GrafoDirigido grafoFinal= new GrafoDirigido();
-            for(int i=0;i< solucionActual.size();i++){
-            	if (i==0)
-            		grafoFinal.agregarVertice(solucionActual.get(i), null);
-            	else {
-            		String padre = solucionActual.get(i-1);
-            		grafoFinal.agregarVertice(solucionActual.get(i),padre);
-            		grafoFinal.agregarArco(solucionActual.get(i),padre);
-            	}
-            }
-            
-            System.out.println("---------------Generos afines a x genero ---------------");
-            Iterator<String> ItGeneros=grafoFinal.obtenerVertices();
-            while (ItGeneros.hasNext()) {
-            	String v= ItGeneros.next();
-            	System.out.println(" "+ v);
-            	
-            }
-         
-            
-            System.out.println("------------------------------");
-      }
+   public void mostrarGrafo(){
+	    GrafoDirigido grafoFinal= new GrafoDirigido();
+        for(int i=0;i< solucionActual.size();i++){
+        	if (i==0)
+        		grafoFinal.agregarVertice(solucionActual.get(i), null);
+        	else {
+        		String padre = solucionActual.get(i-1);
+        		grafoFinal.agregarVertice(solucionActual.get(i),padre);
+        		grafoFinal.agregarArco(solucionActual.get(i),padre);
+        	}
+        }
+        
+        System.out.println("---------------Generos afines a x genero ---------------");
+        Iterator<String> ItGeneros=grafoFinal.obtenerVertices();
+        while (ItGeneros.hasNext()) {
+        	String v= ItGeneros.next();
+        	System.out.println(" "+ v);
+        	
+        }
+     
+        
+        System.out.println("------------------------------");
+  }
        
 }
