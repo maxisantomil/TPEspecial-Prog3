@@ -145,10 +145,6 @@ public class GrafoDirigido implements Grafo{
 			ArrayList<String> generosBuscados= new ArrayList<String>();
 			String auxGenero;
 			LinkedList<Arco> arcos= mapVertices.get(verticeOrigen).getArcos();
-//			while (arcos.hasNext()) {
-//				Arco arco1=arcos.next();
-//				Arco arco2=arcos.next();
-//			}
 			Collections.sort(arcos,new ComparadorEtiqueta().reversed());
 			generosBuscados.addAll(obtenerGenerosMasBuscados(arcos));
 			return generosBuscados;

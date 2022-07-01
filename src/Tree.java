@@ -48,8 +48,8 @@ public class Tree {
 					
 			}
 		}
-		 // ajustar dinámicamente la altura del árbol durante el proceso de adición
-        // Si la diferencia correcta derecha del arbol actual es mayor que 1, gire a la izquierda hacia la izquierda
+		 // ajustar dinámicamente la altura del árbol al insertar
+        // Si la diferencia correcta derecha del arbol actual es mayor que 1, gira a la izquierda hacia la izquierda
         if (this.getRightTreeHeight()-this.getLeftTreeHeight() > 1){
             if (this.right.getLeftTreeHeight() > this.right.getRightTreeHeight()){
                 this.right.rightRotate();
@@ -60,7 +60,7 @@ public class Tree {
             return;
         }
 
-        // Si el subárbol izquierdo del arbol actual es mayor que 1, gire a la derecha
+        // Si el subárbol izquierdo del arbol actual es mayor que 1, gira a la derecha
         if (this.getLeftTreeHeight() - this.getRightTreeHeight() > 1){
             if (this.left.getRightTreeHeight() > this.left.getLeftTreeHeight()){
                 this.left.leftRotate();
@@ -126,8 +126,6 @@ public class Tree {
 			return this;
 		}
 		
-		//Los árboles AVL están siempre equilibrados de tal modo que para todos los nodos, la altura de la rama izquierda no difiere en más de una unidad de la altura de la rama derecha o viceversa. 
-		//Gracias a esta forma de equilibrio (o balanceo), la complejidad de una búsqueda en uno de estos árboles se mantiene siempre en orden de complejidad O(log n)
 		public Genero buscarGenero(String valor) {
 			Genero g=new Genero();
 				if (this.genero.getNombre().equals(valor)) {

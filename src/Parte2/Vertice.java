@@ -46,7 +46,6 @@ public class Vertice {
 		for (Arco a: arcos ) {
 			if (a.getVerticeDestino().equals(idAdyacente)){
 				result=true;
-				System.out.println("resuktadooo "+ result);
 				return result;
 			}
 		}

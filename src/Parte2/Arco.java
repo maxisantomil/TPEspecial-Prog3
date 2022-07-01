@@ -16,7 +16,7 @@ public class Arco {
 	}
 	
 	public Arco() {
-		// TODO Auto-generated constructor stub
+		etiqueta=0;
 	}
 
 	public String getVerticeOrigen() {
@@ -25,6 +25,11 @@ public class Arco {
 	
 	public String getVerticeDestino() {
 		return verticeDestino;
+	}
+
+
+	public void setVerticeDestino(String verticeDestino) {
+		this.verticeDestino = verticeDestino;
 	}
 
 	public int getEtiqueta() {
